@@ -1,0 +1,64 @@
+{
+  "widget": {
+    "loading": "加载中...",
+    "noOutput": "（无输出）",
+    "commandFailed": "命令执行失败（{code}）"
+  },
+  "menu": {
+    "refresh": "刷新",
+    "openSettings": "打开槽位设置"
+  },
+  "settings": {
+    "title": "命令运行器",
+    "description": "配置命令槽位。bar 上第 1 个组件使用槽位 1，第 2 个组件使用槽位 2，以此类推。",
+    "slotCount": {
+      "label": "槽位数量",
+      "description": "可用的独立命令槽位数量。"
+    },
+    "slot": {
+      "title": "槽位 {index}",
+      "description": "被 bar 上第 {index} 个组件使用。",
+      "nameLabel": "槽位名称",
+      "nameDescription": "这个槽位的可选名称。",
+      "defaultName": "槽位 {index}"
+    },
+    "command": {
+      "label": "命令",
+      "description": "要执行的 Shell 命令，标准输出会显示在 bar 上。"
+    },
+    "clickCommand": {
+      "label": "点击命令",
+      "description": "点击这个槽位时执行的可选命令。"
+    },
+    "shellPath": {
+      "label": "Shell 路径",
+      "description": "执行命令时使用的解释器。"
+    },
+    "refreshInterval": {
+      "label": "刷新间隔",
+      "description": "命令自动重新执行的时间间隔，单位为秒。"
+    },
+    "maxTextLength": {
+      "label": "最大文本长度",
+      "description": "文本超过这个长度后开始走马灯滚动。"
+    },
+    "marqueeEnabled": {
+      "label": "启用走马灯",
+      "description": "当文本超过配置的最大长度时，自动滚动显示。"
+    },
+    "color": {
+      "label": "颜色",
+      "description": "选择主题颜色或自定义颜色。",
+      "none": "无",
+      "primary": "主要",
+      "secondary": "辅助",
+      "tertiary": "第三",
+      "custom": "自定义",
+      "previewText": "预览文本"
+    },
+    "textColor": {
+      "label": "自定义颜色",
+      "description": "选择自定义文本颜色。"
+    }
+  }
+}

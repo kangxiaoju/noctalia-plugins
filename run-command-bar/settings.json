@@ -1,0 +1,49 @@
+{
+  "slotCount": 4,
+  "slotConfigs": [
+    {
+      "name": "songTitle",
+      "command": "/home/kael/.config/waybar/scripts/song.sh title",
+      "clickCommand": "",
+      "shellPath": "/bin/sh",
+      "refreshIntervalSeconds": 1,
+      "maxTextLength": 12,
+      "marqueeEnabled": true,
+      "colorMode": "custom",
+      "textColor": "#c0caf5"
+    },
+    {
+      "name": "songStatus",
+      "command": "/home/kael/.config/waybar/scripts/song.sh songStatus",
+      "clickCommand": "playerctl play-pause",
+      "shellPath": "/bin/sh",
+      "refreshIntervalSeconds": 3,
+      "maxTextLength": 15,
+      "marqueeEnabled": false,
+      "colorMode": "custom",
+      "textColor": "#f28fad"
+    },
+    {
+      "name": "songPost",
+      "command": "/home/kael/.config/waybar/scripts/song.sh post",
+      "clickCommand": "",
+      "shellPath": "/bin/sh",
+      "refreshIntervalSeconds": 1,
+      "maxTextLength": 12,
+      "marqueeEnabled": false,
+      "colorMode": "custom",
+      "textColor": "#abe9b3"
+    },
+    {
+      "name": "songL",
+      "command": "/home/kael/.config/waybar/scripts/song.sh",
+      "clickCommand": "",
+      "shellPath": "/bin/sh",
+      "refreshIntervalSeconds": 1,
+      "maxTextLength": 30,
+      "marqueeEnabled": true,
+      "colorMode": "custom",
+      "textColor": "#c0caf5"
+    }
+  ]
+}

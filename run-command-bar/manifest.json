@@ -1,0 +1,69 @@
+{
+  "id": "run-command-bar",
+  "name": "Run Command Bar",
+  "version": "1.0.0",
+  "minNoctaliaVersion": "3.6.0",
+  "author": "kael",
+  "license": "MIT",
+  "description": "Run a command in the bar and display its stdout with configurable text behavior and colors.",
+  "tags": ["Bar", "Utility", "Shell"],
+  "official": false,
+  "entryPoints": {
+    "barWidget": "BarWidget.qml",
+    "settings": "Settings.qml"
+  },
+  "dependencies": {
+    "plugins": []
+  },
+  "metadata": {
+    "defaultSettings": {
+      "slotCount": 4,
+      "slotConfigs": [
+        {
+          "name": "Slot 1",
+          "command": "date '+%H:%M:%S'",
+          "clickCommand": "",
+          "shellPath": "/bin/sh",
+          "refreshIntervalSeconds": 5,
+          "maxTextLength": 24,
+          "marqueeEnabled": true,
+          "colorMode": "none",
+          "textColor": "#A6E3A1"
+        },
+        {
+          "name": "Slot 2",
+          "command": "echo 'slot 2'",
+          "clickCommand": "",
+          "shellPath": "/bin/sh",
+          "refreshIntervalSeconds": 5,
+          "maxTextLength": 24,
+          "marqueeEnabled": true,
+          "colorMode": "primary",
+          "textColor": "#A6E3A1"
+        },
+        {
+          "name": "Slot 3",
+          "command": "echo 'slot 3'",
+          "clickCommand": "",
+          "shellPath": "/bin/sh",
+          "refreshIntervalSeconds": 5,
+          "maxTextLength": 24,
+          "marqueeEnabled": true,
+          "colorMode": "secondary",
+          "textColor": "#A6E3A1"
+        },
+        {
+          "name": "Slot 4",
+          "command": "echo 'slot 4'",
+          "clickCommand": "",
+          "shellPath": "/bin/sh",
+          "refreshIntervalSeconds": 5,
+          "maxTextLength": 24,
+          "marqueeEnabled": true,
+          "colorMode": "tertiary",
+          "textColor": "#A6E3A1"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "widget": {
+    "loading": "Loading...",
+    "noOutput": "(no output)",
+    "commandFailed": "Command failed ({code})"
+  },
+  "menu": {
+    "refresh": "Refresh",
+    "openSettings": "Open Slot Settings"
+  },
+  "settings": {
+    "title": "Command Runner",
+    "description": "Configure command slots. The first widget uses slot 1, the second widget uses slot 2, and so on.",
+    "slotCount": {
+      "label": "Slot Count",
+      "description": "How many independent command slots are available."
+    },
+    "slot": {
+      "title": "Slot {index}",
+      "description": "Used by widget #{index} in the bar.",
+      "nameLabel": "Slot Name",
+      "nameDescription": "Optional label for this slot.",
+      "defaultName": "Slot {index}"
+    },
+    "command": {
+      "label": "Command",
+      "description": "Shell command to execute. The command stdout is shown in the bar."
+    },
+    "clickCommand": {
+      "label": "Click Command",
+      "description": "Optional command executed when this slot is clicked."
+    },
+    "shellPath": {
+      "label": "Shell Path",
+      "description": "Interpreter used to execute the command."
+    },
+    "refreshInterval": {
+      "label": "Refresh Interval",
+      "description": "How often the command reruns automatically, in seconds."
+    },
+    "maxTextLength": {
+      "label": "Maximum Text Length",
+      "description": "Start marquee scrolling when the text exceeds this length."
+    },
+    "marqueeEnabled": {
+      "label": "Enable Marquee",
+      "description": "Scroll the text when it exceeds the configured maximum length."
+    },
+    "color": {
+      "label": "Color",
+      "description": "Choose theme color or a custom color.",
+      "none": "None",
+      "primary": "Primary",
+      "secondary": "Secondary",
+      "tertiary": "Tertiary",
+      "custom": "Custom",
+      "previewText": "Preview Text"
+    },
+    "textColor": {
+      "label": "Custom Color",
+      "description": "Pick the custom text color."
+    }
+  }
+}
