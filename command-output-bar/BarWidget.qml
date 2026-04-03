@@ -110,7 +110,11 @@ Item {
           readonly property real maxViewportWidth: Math.max(80, maxTextLength * root.barFontSize * 0.72)
           readonly property bool hasVisibleText: displayText.length > 0
           readonly property bool shouldMarquee: hasVisibleText && marqueeEnabled && textMetrics.width > maxViewportWidth
-          readonly property real viewportWidth: shouldMarquee ? maxViewportWidth : (hasVisibleText ? Math.max(1, Math.min(textMetrics.width, maxViewportWidth)) : 0)
+          readonly property real viewportWidth: !hasVisibleText
+            ? 0
+            : shouldMarquee
+              ? maxViewportWidth
+              : Math.max(1, textMetrics.width)
 
           property string displayText: root.pluginApi?.tr("widget.loading") || "Loading..."
           property string lastStdErr: ""
@@ -182,7 +186,7 @@ Item {
               verticalAlignment: Text.AlignVCenter
               horizontalAlignment: Text.AlignLeft
               wrapMode: Text.NoWrap
-              elide: Text.ElideRight
+              elide: Text.ElideNone
               maximumLineCount: 1
               clip: true
             }

@@ -116,6 +116,17 @@ ColumnLayout {
       required property int index
       property int slotIndex: index
       readonly property var slotValue: root.slotConfigs[slotIndex] || root.makeDefaultSlot(slotIndex)
+      property int refreshIntervalValue: slotValue.refreshIntervalSeconds
+      property int maxTextLengthValue: slotValue.maxTextLength
+
+      onSlotValueChanged: {
+        if (refreshIntervalValue !== slotValue.refreshIntervalSeconds) {
+          refreshIntervalValue = slotValue.refreshIntervalSeconds
+        }
+        if (maxTextLengthValue !== slotValue.maxTextLength) {
+          maxTextLengthValue = slotValue.maxTextLength
+        }
+      }
 
       Layout.fillWidth: true
       radius: Style.radiusL
@@ -183,8 +194,15 @@ ColumnLayout {
           NSpinBox {
             from: 1
             to: 3600
-            value: slotValue.refreshIntervalSeconds
-            onValueChanged: root.setSlotField(slotIndex, "refreshIntervalSeconds", value)
+            value: refreshIntervalValue
+            onValueChanged: {
+              if (refreshIntervalValue !== value) {
+                refreshIntervalValue = value
+              }
+              if (slotValue.refreshIntervalSeconds !== value) {
+                root.setSlotField(slotIndex, "refreshIntervalSeconds", value)
+              }
+            }
           }
         }
 
@@ -200,8 +218,15 @@ ColumnLayout {
           NSpinBox {
             from: 4
             to: 200
-            value: slotValue.maxTextLength
-            onValueChanged: root.setSlotField(slotIndex, "maxTextLength", value)
+            value: maxTextLengthValue
+            onValueChanged: {
+              if (maxTextLengthValue !== value) {
+                maxTextLengthValue = value
+              }
+              if (slotValue.maxTextLength !== value) {
+                root.setSlotField(slotIndex, "maxTextLength", value)
+              }
+            }
           }
         }
 
