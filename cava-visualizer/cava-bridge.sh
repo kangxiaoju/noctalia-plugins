@@ -9,8 +9,15 @@ FRAMERATE="${2:-30}" # 可选参数，控制 cava 输出帧率，默认为 30 FP
 KEEP_CAVA_RUNNING="${3:-0}" # 1 时无音频也保持 cava 运行，输出原生空闲帧
 ASCII_MAX=16  # cava 输出值域上限，QML 侧 /10.0 归一化依赖此值
 CONF=$(mktemp /tmp/noctalia_cava_XXXXXX.conf)
+FIFO=""
+CAVA_PID=""
+READER_PID=""
+
 if ! [[ "$FRAMERATE" =~ ^[0-9]+$ ]] || [[ "$FRAMERATE" -lt 1 ]]; then
     FRAMERATE=30
+fi
+if ! [[ "$BARS" =~ ^[0-9]+$ ]] || [[ "$BARS" -lt 2 ]]; then
+    BARS=12
 fi
 if [[ "$KEEP_CAVA_RUNNING" != "1" ]]; then
     KEEP_CAVA_RUNNING=0
@@ -18,8 +25,7 @@ fi
 
 cleanup() {
     trap - EXIT INT TERM
-    pkill -P $$ 2>/dev/null
-    wait 2>/dev/null
+    stop_cava
     rm -f "$CONF"
     echo "IDLE"
     exit 0
@@ -46,12 +52,18 @@ raw_target = /dev/stdout
 data_format = ascii
 ascii_max_range = $ASCII_MAX
 EOF
-    # cava 会按 framerate 主动控制输出频率；这里不再额外 sleep，避免双时钟导致积压/延迟
-    # 每行一帧，格式为 "0;3;7;2;...;\n"；末尾分号由 cava 自带，QML 侧 split 后过滤空元素即可
-    cava -p "$CONF" 2>/dev/null \
-        | while IFS= read -r line; do
-            echo "ACTIVE:$line"
-        done &
+
+    FIFO=$(mktemp -u /tmp/noctalia_cava_fifo_XXXXXX)
+    mkfifo "$FIFO"
+
+    # 让 cava 和转发循环都有独立 PID，避免 stop 时只杀掉管道的子 shell、留下 cava 残留。
+    while IFS= read -r line; do
+        echo "ACTIVE:$line"
+    done < "$FIFO" &
+    READER_PID=$!
+
+    # cava 会按 framerate 主动控制输出频率；这里不再额外 sleep，避免双时钟导致积压/延迟。
+    cava -p "$CONF" > "$FIFO" 2>/dev/null &
     CAVA_PID=$!
 }
 
@@ -61,9 +73,19 @@ stop_cava() {
         wait "$CAVA_PID" 2>/dev/null
     fi
     CAVA_PID=""
+
+    if [[ -n "$READER_PID" ]] && kill -0 "$READER_PID" 2>/dev/null; then
+        kill "$READER_PID" 2>/dev/null
+        wait "$READER_PID" 2>/dev/null
+    fi
+    READER_PID=""
+
+    if [[ -n "$FIFO" ]]; then
+        rm -f "$FIFO"
+    fi
+    FIFO=""
 }
 
-CAVA_PID=""
 echo "IDLE"
 
 while true; do
