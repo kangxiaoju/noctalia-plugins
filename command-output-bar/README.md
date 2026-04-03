@@ -1,4 +1,4 @@
-# Run Command Bar
+# Command Output Bar
 
 Noctalia bar plugin that runs a shell command and displays the command's stdout.
 

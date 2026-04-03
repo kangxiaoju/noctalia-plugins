@@ -1,6 +1,6 @@
 {
-  "id": "run-command-bar",
-  "name": "Run Command Bar",
+  "id": "command-output-bar",
+  "name": "Command Output Bar",
   "version": "1.0.0",
   "minNoctaliaVersion": "3.6.0",
   "author": "kael",

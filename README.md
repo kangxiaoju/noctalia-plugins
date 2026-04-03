@@ -6,12 +6,12 @@
 
 ## 当前包含
 
-- `run-command-bar`
+- `command-output-bar`
 - `cava-visualizer`
 
 ## 插件说明
 
-- `run-command-bar`
+- `command-output-bar`
   用于在 Noctalia 栏中执行 shell 命令，并把标准输出直接显示在栏上。
 - `cava-visualizer`
   基于 `cava` 的音频频谱栏插件。
@@ -24,9 +24,9 @@
 
 我在这个仓库里收录和整理它，方便和其它自用插件一起维护。
 
-## Run Command Bar 工作原理
+## Command Output Bar 工作原理
 
-`run-command-bar` 的核心思路很简单：
+`command-output-bar` 的核心思路很简单：
 
 1. 插件在任务栏里按配置生成多个 slot。
 2. 每个 slot 都会读取自己的命令、刷新间隔、shell 路径、文本长度和颜色设置。
@@ -45,6 +45,6 @@
 ```text
 .
 ├── registry.json
-├── run-command-bar/
+├── command-output-bar/
 └── cava-visualizer/
 ```
