@@ -11,6 +11,7 @@ Item {
     property int barCount: 12
     property int framerate: 30
     property bool showWhenIdle: false
+    property bool configured: false
 
     property bool audioActive: false
     property double lastActiveMs: 0
@@ -30,6 +31,12 @@ Item {
         barCount = nextBarCount
         framerate = nextFramerate
         showWhenIdle = nextShowWhenIdle
+
+        if (!configured) {
+            configured = true
+            bridge.running = true
+            return
+        }
 
         if (changed) {
             audioActive = false
@@ -55,7 +62,7 @@ Item {
                   root.barCount.toString(),
                   root.framerate.toString(),
                   root.showWhenIdle ? "1" : "0"]
-        running: true
+        running: false
 
         stdout: SplitParser {
             onRead: function(line) {
