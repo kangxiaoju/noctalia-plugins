@@ -21,7 +21,7 @@
     {
       "id": "cava-visualizer",
       "name": "Cava 频谱",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "minNoctaliaVersion": "3.6.0",
       "author": "jialuo",
       "license": "MIT",
